@@ -3,16 +3,17 @@
 namespace xemmaix::curl
 {
 
-void t_entry::f_dispose()
+t_session::~t_session()
 {
-	v_previous->v_next = v_next;
-	v_next->v_previous = v_previous;
+	while (v_next != this) static_cast<t_proxy*>(v_next)->f_dispose();
+	curl_multi_cleanup(v_curlm);
+	v_instance = nullptr;
 }
 
 void t_proxy::f_dispose()
 {
-	t_entry::f_dispose();
 	v_object = nullptr;
+	this->~t_entry();
 }
 
 t_library::~t_library()
