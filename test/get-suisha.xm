@@ -3,11 +3,6 @@ io = Module("io"
 suisha = Module("suisha"
 curl = Module("curl"
 
-Source = Object + @
-	$close = @
-	$read
-	$__initialize = @(read) $read = read
-
 suisha.main(@ curl.main(@
 	get = @(url, action)
 		fiber = Fiber(action
@@ -32,7 +27,7 @@ suisha.main(@ curl.main(@
 		id = serial
 		:serial = serial + 1
 		get(url, @(read) try
-			reader = io.Reader(Source(read), "utf-8"
+			reader = io.Reader(read, "utf-8"
 			while
 				s = reader.read_line(
 				s == "" && break

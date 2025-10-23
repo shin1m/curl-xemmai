@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
-project(curl-xemmai VERSION 202508)
-find_package(xemmai 202508 REQUIRED)
+project(curl-xemmai VERSION 202510)
+find_package(xemmai 202510 REQUIRED)
 find_package(CURL 8.8 REQUIRED)
 add_subdirectory(src)
 enable_testing()

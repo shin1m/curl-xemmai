@@ -3,11 +3,6 @@ io = Module("io"
 os = Module("os"
 curl = Module("curl"
 
-Source = Object + @
-	$close = @
-	$read
-	$__initialize = @(read) $read = read
-
 curl.main(@
 	delta = 10
 	wait = 0
@@ -38,7 +33,7 @@ curl.main(@
 		id = serial
 		:serial = serial + 1
 		get(url, @(read) try
-			reader = io.Reader(Source(read), "utf-8"
+			reader = io.Reader(read, "utf-8"
 			while
 				s = reader.read_line(
 				s == "" && break
